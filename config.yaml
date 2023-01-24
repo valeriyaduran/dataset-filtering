@@ -1,0 +1,27 @@
+common:
+  output_directory: dataset/outputs
+  default_n_jobs: 10
+
+steps:
+  - type: filter
+    parameters:
+      inputs:
+        - WikiMatrix.en-ru.en
+        - WikiMatrix.en-ru.ru
+      outputs:
+        - FilteredWikiMatrix.en-ru.en
+        - FilteredWikiMatrix.en-ru.ru
+      filters:
+        - LanguageIDFilter:
+            id_method: langid
+            languages: [ en, ru ]
+            thresholds: [ 1, 1 ]
+        - LengthFilter:
+            min_length: 3
+            max_length: 100
+            unit: word
+        - AlphabetRatioFilter:
+            threshold: 0.75
+        - HtmlTagFilter: {}
+
+
