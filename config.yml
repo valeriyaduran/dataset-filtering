@@ -1,13 +1,12 @@
 common:
-  output_directory: dataset/outputs
+  output_directory: ./outputs
   default_n_jobs: 10
-
 steps:
   - type: filter
     parameters:
       inputs:
-        - WikiMatrix.en-ru.en
-        - WikiMatrix.en-ru.ru
+        - ./dataset/WikiMatrix.en-ru.en
+        - ./dataset/WikiMatrix.en-ru.ru
       outputs:
         - FilteredWikiMatrix.en-ru.en
         - FilteredWikiMatrix.en-ru.ru
