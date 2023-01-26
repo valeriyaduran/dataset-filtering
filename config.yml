@@ -8,8 +8,8 @@ steps:
         - ../dataset/WikiMatrix.en-ru.en
         - ../dataset/WikiMatrix.en-ru.ru
       outputs:
-        - dataset/FilteredWikiMatrix.en-ru.en
-        - dataset/FilteredWikiMatrix.en-ru.ru
+        - FilteredWikiMatrix.en-ru.en
+        - FilteredWikiMatrix.en-ru.ru
       filters:
         - LanguageIDFilter:
             id_method: langid
