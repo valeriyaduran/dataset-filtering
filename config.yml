@@ -1,11 +1,26 @@
 common:
   output_directory: outputs
 steps:
-  - type: filter
+  - type: preprocess
     parameters:
       inputs:
         - ../dataset/WikiMatrix.en-ru.en
         - ../dataset/WikiMatrix.en-ru.ru
+      outputs:
+        - preprocessed_WikiMatrix.en-ru.en
+        - preprocessed_WikiMatrix.en-ru.ru
+      preprocessors:
+        - RegExpSub:
+            patterns:
+              - [ '"', '', 0, '' ]
+              - [ ' / ', '', 0, '' ]
+              - [ '»', '', 0, '' ]
+              - [ '«', '', 0, '' ]
+  - type: filter
+    parameters:
+      inputs:
+        - preprocessed_WikiMatrix.en-ru.en
+        - preprocessed_WikiMatrix.en-ru.ru
       outputs:
         - FilteredWikiMatrix.en-ru.en
         - FilteredWikiMatrix.en-ru.ru
@@ -21,5 +36,7 @@ steps:
         - AlphabetRatioFilter:
             threshold: 0.75
             exclude_whitespace: true
+        - RegExpFilter:
+            regexps: '\{\\'
 
 
